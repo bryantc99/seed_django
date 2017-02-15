@@ -8,6 +8,7 @@ import logging
 import os.path
 from os import environ
 from collections import defaultdict
+import sys
 from sys import stdout
 import random
 
@@ -22,6 +23,10 @@ import tornado.ioloop
 import tornado.web
 import tornado.gen
 import tornado.options
+import tornado.wsgi
+
+import django
+import django.core.handlers.wsgi
 
 from pymongo import MongoClient
 
@@ -39,7 +44,7 @@ from bson.objectid import ObjectId
 MONGODB_DB_URL = 'mongodb://localhost:27017/'
 MONGODB_DB_NAME = 'gameData'
 
-tornado.options.define('port', default=8080, help='run on the given port', type=int)
+tornado.options.define('port', default=8000, help='run on the given port', type=int)
 tornado.options.define('debug', default=False, help='run in debug mode', metavar='True|False', type=bool)
 tornado.options.define('heartbeat', default=False, help='check client-side heartbeats', metavar='True|False', type=bool)
 tornado.options.define('production', default=False, help='run in Production or Testing mode', metavar='True|False', type=bool)
@@ -628,9 +633,10 @@ class GameConnection(SockJSConnection):
         client.close()
 
 def main():
-    http_server = tornado.httpserver.HTTPServer(Application(),  xheaders=True)
-    http_server.listen(8080)
-    tornado.ioloop.IOLoop.current().start()
+    os.environ["DJANGO_SETTINGS_MODULE"] = "seed_django.settings"
+    django.setup()
+    application = django.core.handlers.wsgi.WSGIHandler()
+    container = tornado.wsgi.WSGIContainer(application)
 
 if __name__ == "__main__":
     main()
