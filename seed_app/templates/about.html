@@ -4,13 +4,15 @@
 <title>Oxford Experiments</title>
 <meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=no">
 
-<link rel="stylesheet" href="{{ static_url("css/main.css") }}" type="text/css">
-<link rel="stylesheet" href="{{ static_url("css/register.css") }}" type="text/css">
+{% load static %}
 
-<script src="{{ static_url("js/angular/angular.js") }}" type="text/javascript"></script>
-<script src="{{ static_url("js/angular/angular-resource.js") }}" type="text/javascript"></script>
+<link rel="stylesheet" href="{% static "css/main.css" %}" type="text/css">
+<link rel="stylesheet" href="{% static "css/register.css" %}" type="text/css">
 
-<script src="{{ static_url("js/main.js") }}" type="text/javascript"></script>
+<script src="{% static "js/angular/angular.js" %}" type="text/javascript"></script>
+<script src="{% static "js/angular/angular-resource.js" %}" type="text/javascript"></script>
+
+<script src="{% static "js/main.js" %}" type="text/javascript"></script>
 
 </head>
 <body>
@@ -57,7 +59,7 @@ Our study has been reviewed and approved by the Ethics Committee in Oxford. You 
 
       <p>Please select <b>I agree</b> to participate in this study.</p><p></p><p> Your ID is {{name}}</p>
 
-      <form action="/welcome" method="post">
+      <form action="/welcome" method="post"> {% csrf_token %}
       <input name="consent" type="hidden" value="1">
       <input type="submit" value="I agree" class="button">
       </form>

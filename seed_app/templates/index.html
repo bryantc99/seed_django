@@ -28,10 +28,10 @@
 
 
 
-<form action="/about" method="post" id="messageform">
+<form action="/about" method="post" id="messageform">{% csrf_token %}
   <table>
     <tr>
-      <td><input type="text" name="body" id="playerName" ng-Model = "main.user.name" size="30"></td>
+      <td><input type="text" name="body" id="name" ng-Model = "main.user.name" size="30"></td>
       <td>
         <input type="submit"  value="{{ _("OK") }}" class="button" ng-click = "main.register()" >
         <input type="hidden" name="next" value="{{ request.path }}">
