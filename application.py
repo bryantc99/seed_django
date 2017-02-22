@@ -41,7 +41,7 @@ import redis
 from bson import json_util
 from bson.objectid import ObjectId
 
-MONGODB_DB_URL = 'ds157509.mlab.com:57509/heroku_k40373tr'
+MONGODB_DB_URL = 'mongodb://heroku_v6kgt2lk:2qgnfuolrunjh27nj0so3klaki@ds157479.mlab.com:57479/heroku_v6kgt2lk'
 MONGODB_DB_NAME = 'heroku_k40373tr'
 
 tornado.options.define('port', default=8000, help='run on the given port', type=int)
