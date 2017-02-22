@@ -1,2 +1,3 @@
-web: python manage.py runserver
+web: gunicorn seed_django.wsgi --log-file -
+
 
