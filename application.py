@@ -41,8 +41,8 @@ import redis
 from bson import json_util
 from bson.objectid import ObjectId
 
-MONGODB_DB_URL = 'mongodb://localhost:27017/'
-MONGODB_DB_NAME = 'gameData'
+MONGODB_DB_URL = 'ds157509.mlab.com:57509/heroku_k40373tr'
+MONGODB_DB_NAME = 'heroku_k40373tr'
 
 tornado.options.define('port', default=8000, help='run on the given port', type=int)
 tornado.options.define('debug', default=False, help='run in debug mode', metavar='True|False', type=bool)
